@@ -1,7 +1,7 @@
 ---
-title: "deliverable1"
+title: "deliverable2"
 output: html_document
-date: "2025-09-08"
+date: "2025-09-11"
 ---
 
 ```{r setup, include=FALSE}
@@ -11,37 +11,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 ```{r}
-#setup packages
+# setup packages 
 library(tidyverse)
-library(dplyr)
 
-# retrieve raw datasets from IMDb urls
-#   retrieve dataset for Movie and TV Episode Duration and Release Year
-url <- "https://datasets.imdbws.com/title.basics.tsv.gz"
-duration_RY_raw <- read_csv(url)
-View(duration_raw)
-#   separate the columns
-duration_RY_fixed <- duration_RY_raw %>% separate(1, into= c("tconst", "TitleType", "primaryTitle", "originalTitle", "isAdult", "startYear", "endYear", "runtimeMinutes", "genres"), sep = "\t")
-
-#   retrieve dataset for rating
-url2 <- "https://datasets.imdbws.com/title.ratings.tsv.gz"
-ratings_raw <- read_csv(url2)
-#   separate the columns
-ratings_fixed <- ratings_raw %>% separate(1, into = c("tconst", "averageRating", "numVotes"))
-
+# load raw data
+source("download-data.R")
 
 # filter out movies and tv episodes 
-filtered_movies_TVepisodes <- duration_RY_fixed %>% filter(TitleType %in% c("movie", "tvepisode"))
+filtered_movies_TVepisodes <- title_basics_raw %>% filter(titleType %in% c("movie", "tvepisode"))
 
 # merge datasets: filtered_movies_TVepisodes and ratings_fixed
-merged_data <- filtered_movies_TVepisodes %>% left_join(ratings_fixed, by = "tconst")
+merged_data <- filtered_movies_TVepisodes %>% left_join(ratings_raw, by = "tconst")
+
 
 # create dummy variable: 0=movie, 1=tvepisode
-merged_data <- merged_data %>% mutate(is_tvepisode = ifelse(TitleType == "tvepisode", 1, 0))
-
-# turn missing data (\N) to NA
-merged_data[merged_data == "\\N"] <- NA
-
+merged_data <- merged_data %>% mutate(is_tvepisode = ifelse(titleType == "tvepisode", 1, 0))
 
 ```
-
