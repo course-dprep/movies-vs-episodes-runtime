@@ -32,6 +32,9 @@ merged_data <- merged_data %>% mutate(is_tvepisode = ifelse(titleType == "tvepis
 DELIVERABLE 3: further data exploration
 
 ```{r}
+library(data.table)
+data_table <- as.data.table(merged_data)
+data_table[, c("originalTitle", "isAdult", "endYear", "genres", "numVotes") := NULL]
 
 ```
 
