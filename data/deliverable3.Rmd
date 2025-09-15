@@ -1,14 +1,14 @@
 ---
-title: "deliverable2"
+title: "deliverable3"
 output: html_document
-date: "2025-09-11"
+date: "2025-09-15"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+DELIVERABLE 2: initial data exploration
 
 ```{r}
 # setup packages 
@@ -27,7 +27,11 @@ merged_data <- filtered_movies_TVepisodes %>% left_join(ratings_raw, by = "tcons
 # create dummy variable: 0=movie, 1=tvepisode
 merged_data <- merged_data %>% mutate(is_tvepisode = ifelse(titleType == "tvepisode", 1, 0))
 ```
+```
 
+DELIVERABLE 3: further data exploration
 
 ```{r}
+
 ```
+
