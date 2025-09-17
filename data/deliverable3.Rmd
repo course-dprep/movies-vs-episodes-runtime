@@ -132,5 +132,30 @@ ggplot(analysis_data_clean, aes(x = factor(is_tvepisode, labels = c("Movie", "TV
 
 
 table(analysis_data_clean$is_tvepisode)
+```
+
+# Step 8: Remove outliers for runtime series
+
+```{r}
+# Analysing the data
+
+analysis_data_clean %>%
+  filter(is_tvepisode == 1) %>%
+  ggplot(aes(x = runtimeMinutes)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black") +
+  labs(title = "Distribution of x when y = 1",
+       x = "x",
+       y = "Count")
+
+analysis_data_clean %>%
+   filter(runtimeMinutes < 15, is_tvepisode==1) %>%
+   summarise(count = n())
+  
+  # Removing TV episodes that are shorter than 15 minutes or longer than 65 minutes
+  
+  analysis_data_clean <- analysis_data_clean %>%
+  filter(is_tvepisode != 1 | (runtimeMinutes >= 15 & runtimeMinutes <= 65))
+
 
 ```
+
