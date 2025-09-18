@@ -3,7 +3,7 @@ title: "deliverable3"
 output:
   html_document: default
   pdf_document: default
-date: "2025-09-16"
+date: "2025-09-18"
 ---
 
 ```{r setup, include=FALSE}
@@ -32,16 +32,16 @@ title_basics_raw <- read_tsv(title_url, na = c("\\N", ""), show_col_types = FALS
 ratings_raw <- read_tsv(rating_url, na = c("\\N", ""), show_col_types = FALSE)
 ```
 
-# Step 2: Filter only movies and TV episodes
+# Step 2: Filter only movies and TV episodes 
 
-```{r}
+```{r, cache=TRUE}
 filtered_movies_TVepisodes <- title_basics_raw %>% 
   filter(titleType %in% c("movie", "tvEpisode"))
 ```
 
 # Step 3: Merge with ratings'
 
-```{r}
+```{r, cache=TRUE}
 merged_data <- filtered_movies_TVepisodes %>% 
   left_join(ratings_raw, by = "tconst")
 
@@ -57,10 +57,10 @@ merged_data <- merged_data %>%
 
 # Step 5: Select relevant columns, remove missing values, de-deplicate
 
-```{r}
+```{r, cache=TRUE}
 analysis_data <- merged_data %>% 
   select(tconst, primaryTitle, averageRating, runtimeMinutes, startYear, is_tvepisode) %>% 
-  filter(!is.na(runtimeMinutes), !is.na(averageRating), !is.na(startYear)) %>% 
+  drop_na(runtimeMinutes, averageRating, startYear) %>% 
   distinct(tconst, .keep_all = TRUE) %>% 
   { if ("tconst" %in% names(.) && n_distinct(.$tconst) == nrow(.)) select(., -tconst) else . }
 ```
@@ -143,8 +143,8 @@ analysis_data_clean %>%
   filter(is_tvepisode == 1) %>%
   ggplot(aes(x = runtimeMinutes)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black") +
-  labs(title = "Distribution of x when y = 1",
-       x = "x",
+  labs(title = "Distribution of Runtime for TV Episodes",
+       x = "Runtime (minutes)",
        y = "Count")
 
 analysis_data_clean %>%
