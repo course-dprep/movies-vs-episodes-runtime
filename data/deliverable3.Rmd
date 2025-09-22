@@ -8,14 +8,14 @@ output:
   html_document: default
   pdf_document: default
 date: "2025-09-18"
->>>>>>> main
+
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<<<<<<< HEAD
+
 DELIVERABLE 2: initial data exploration
 
 ```{r}
@@ -190,7 +190,7 @@ analysis_data_clean %>%
   analysis_data_clean <- analysis_data_clean %>%
   filter(is_tvepisode != 1 | (runtimeMinutes >= 15 & runtimeMinutes <= 65))
 
->>>>>>> main
+
 
 ```
 
