@@ -58,11 +58,11 @@ merged_data <- merged_data %>%
 # Step 5: Select relevant columns, remove missing values, de-deplicate
 
 ```{r, cache=TRUE}
-analysis_data <- merged_data %>% 
-  select(tconst, primaryTitle, averageRating, runtimeMinutes, startYear, is_tvepisode) %>% 
-  drop_na(runtimeMinutes, averageRating, startYear) %>% 
-  distinct(tconst, .keep_all = TRUE) %>% 
-  { if ("tconst" %in% names(.) && n_distinct(.$tconst) == nrow(.)) select(., -tconst) else . }
+
+library(data.table)
+  analysis_data <- as.data.table(merged_data)
+  analysis_data[, c("originalTitle", "titleType", "isAdult", "endYear", "genres", "numVotes") := NULL]
+  analysis_data <- analysis_data[!is.na(runtimeMinutes) & !is.na(averageRating)& !is.na(startYear)] %>% distinct(tconst, .keep_all = TRUE)
 ```
 
 # Step 6: Remove extreme outliers for runtime
