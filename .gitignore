@@ -3,3 +3,11 @@
 .DS_Store
 .Rproj.user
 .Rhistory
+
+# R temporary files
+*.RData
+*.Rhistory
+Rplots.pdf
+tmp/
+gen/
+data/*.tsv
