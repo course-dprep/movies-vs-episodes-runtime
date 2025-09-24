@@ -1,49 +1,15 @@
 ---
 title: "deliverable3"
-<<<<<<< HEAD
-output: html_document
-date: "2025-09-15"
-=======
 output:
   html_document: default
   pdf_document: default
 date: "2025-09-18"
-
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-DELIVERABLE 2: initial data exploration
-
-```{r}
-# setup packages 
-library(tidyverse)
-
-# load raw data
-source("download-data.R")
-
-# filter out movies and tv episodes 
-filtered_movies_TVepisodes <- title_basics_raw %>% filter(titleType %in% c("movie", "tvepisode"))
-
-# merge datasets: filtered_movies_TVepisodes and ratings_fixed
-merged_data <- filtered_movies_TVepisodes %>% left_join(ratings_raw, by = "tconst")
-
-
-# create dummy variable: 0=movie, 1=tvepisode
-merged_data <- merged_data %>% mutate(is_tvepisode = ifelse(titleType == "tvepisode", 1, 0))
-```
-```
-
-DELIVERABLE 3: further data exploration
-
-```{r}
-library(data.table)
-data_table <- as.data.table(merged_data)
-data_table[, c("originalTitle", "isAdult", "endYear", "genres", "numVotes") := NULL]
-=======
 ############################################################ 
 
 ## Movie vs TV Episode Runtime and Audience Ratings Analysis
@@ -68,14 +34,14 @@ ratings_raw <- read_tsv(rating_url, na = c("\\N", ""), show_col_types = FALSE)
 
 # Step 2: Filter only movies and TV episodes 
 
-```{r, cache=TRUE}
+```{r}
 filtered_movies_TVepisodes <- title_basics_raw %>% 
   filter(titleType %in% c("movie", "tvEpisode"))
 ```
 
 # Step 3: Merge with ratings'
 
-```{r, cache=TRUE}
+```{r}
 merged_data <- filtered_movies_TVepisodes %>% 
   left_join(ratings_raw, by = "tconst")
 
@@ -91,12 +57,12 @@ merged_data <- merged_data %>%
 
 # Step 5: Select relevant columns, remove missing values, de-deplicate
 
-```{r, cache=TRUE}
-library(data.table)
-analysis_data <- as.data.table(merged_data)
-analysis_data[, c("originalTitle", "titleType", "isAdult", "endYear", "genres", "numVotes") := NULL] 
-analysis_data <- analysis_data[!is.na(runtimeMinutes) & !is.na(averageRating)& !is.na(startYear)] %>% distinct(tconst, .keep_all = TRUE)
-
+```{r}
+analysis_data <- merged_data %>% 
+  select(tconst, primaryTitle, averageRating, runtimeMinutes, startYear, is_tvepisode) %>% 
+  drop_na(runtimeMinutes, averageRating, startYear) %>% 
+  distinct(tconst, .keep_all = TRUE) %>% 
+  { if ("tconst" %in% names(.) && n_distinct(.$tconst) == nrow(.)) select(., -tconst) else . }
 ```
 
 # Step 6: Remove extreme outliers for runtime
@@ -189,7 +155,6 @@ analysis_data_clean %>%
   
   analysis_data_clean <- analysis_data_clean %>%
   filter(is_tvepisode != 1 | (runtimeMinutes >= 15 & runtimeMinutes <= 65))
-
 
 
 ```
