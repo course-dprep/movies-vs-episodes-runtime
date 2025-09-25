@@ -174,3 +174,20 @@ analysis_data_clean %>%
 ```
 
 
+```{r}
+# Change runtimeMinutes to mean
+analysis_data_clean <- analysis_data_clean %>%
+  mutate(mruntimeMinutes = runtimeMinutes - mean(runtimeMinutes, na.rm = TRUE))
+```
+
+```{r}
+# Change baseline to 1896 
+library(tidyverse)
+analysis_data_clean <- analysis_data_clean %>%
+  mutate(startYearCentered = startYear - 1896)
+
+# Regression with interaction effect controlling for release year
+model_1 <- lm(averageRating ~ mruntimeMinutes * is_tvepisode + startYearCentered, data = analysis_data_clean)
+summary(model_1)
+```
+
