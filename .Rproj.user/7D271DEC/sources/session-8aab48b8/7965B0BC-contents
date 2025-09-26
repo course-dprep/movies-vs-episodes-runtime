@@ -15,3 +15,7 @@
 
 #Excluding Rdata
 .Rproj.user
+
+#Excluding folderS
+/raw/
+/tmp/
