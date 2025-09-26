@@ -14,4 +14,9 @@
 *.gz
 
 #Excluding Rdata
-.Rproj.user
+.Rproj.user/
+
+#Excluding folders
+/raw/
+/tmp/
+/gen/

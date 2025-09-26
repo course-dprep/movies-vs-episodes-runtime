@@ -7,8 +7,8 @@ dir.create("tmp", recursive = TRUE, showWarnings = FALSE)
 # Step 1: Both \N and empty strings to be treated as NAs
 library(readr)
 library(tidyverse)
-title_basics_raw <- read_tsv("data/title_basics_raw.tsv", na = c("\\N", ""), show_col_types = FALSE)
-ratings_raw <- read_tsv("data/ratings_raw.tsv", na = c("\\N", ""), show_col_types = FALSE)
+title_basics_raw <- read_tsv("raw/title_basics_raw.tsv", na = c("\\N", ""), show_col_types = FALSE)
+ratings_raw <- read_tsv("raw/ratings_raw.tsv", na = c("\\N", ""), show_col_types = FALSE)
 
 # Step 2: Filter only movies and TVepisodes > save in tmp
 filtered_movies_TVepisodes <- title_basics_raw %>% 

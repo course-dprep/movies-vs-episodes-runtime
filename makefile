@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-all: data/ratings_raw.tsv data/title_basics_raw.tsv tmp/filtered_movies_TVepisodes.tsv tmp/merged_data.tsv tmp/analysis_data.tsv gen/analysis_data_clean.tsv
+all: raw/ratings_raw.tsv raw/title_basics_raw.tsv tmp/filtered_movies_TVepisodes.tsv tmp/merged_data.tsv tmp/analysis_data.tsv gen/analysis_data_clean.tsv
 
 # 1: Download raw data from URLs
-data/ratings_raw.tsv data/title_basics_raw.tsv: src/data-preparation/download-data.R
+raw/ratings_raw.tsv raw/title_basics_raw.tsv: src/data-preparation/download-data.R
 	Rscript src/data-preparation/download-data.R
 
 # 2: Clean data 1/2: filter, merge, add dummy variable
