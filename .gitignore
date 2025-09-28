@@ -1,22 +1,14 @@
-#Excluding csv files
-*.csv
-
-#Excluding tsv files
-*.tsv
-
-#Excluding Rhistory files
+# R / RStudio files
 *.Rhistory
-
-#Excluding Rdata
-*.Rdata
-
-#Excluding Zipfile
-*.gz
-
-#Excluding Rdata
+*.RData
 .Rproj.user/
 
-#Excluding folders
+# Data files
+*.csv
+*.tsv
+*.gz
+
+# Folders
 /raw/
 /tmp/
 /gen/

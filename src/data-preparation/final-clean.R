@@ -1,19 +1,21 @@
-# Step 5: Select relevant columns, remove missing values, de-duplicate > save in gen
-
-dir.create("tmp", recursive = TRUE, showWarnings = FALSE)
-
 library(tidyverse)
 library(data.table)
+library(ggplot2)
+
+# Select relevant columns, remove missing values, de-duplicate > save in gen
+dir.create("tmp", recursive = TRUE, showWarnings = FALSE)
+
 analysis_data <- fread("tmp/merged_data.tsv")
 analysis_data[, c("originalTitle", "titleType", "isAdult", "endYear", "genres", "numVotes") := NULL]
 analysis_data <- analysis_data[!is.na(runtimeMinutes) & !is.na(averageRating)& !is.na(startYear)] %>% distinct(tconst, .keep_all = TRUE)
 
 write_tsv(analysis_data, "tmp/analysis_data.tsv")
 
-# Step 6: Remove extreme outliers for runtime
-  # Analysing the date through a plot
-library(ggplot2)
+# Create gen folder for analysis_data_clean
+dir.create("gen", recursive = TRUE, showWarnings = FALSE)
 
+# Remove extreme outliers for runtime
+## Analyzing the date through a plot
 ggplot(analysis_data, aes(y = runtimeMinutes)) +
   geom_boxplot(fill = "blue", outlier.color = "red", outlier.shape = 16) +
   labs(
@@ -22,10 +24,7 @@ ggplot(analysis_data, aes(y = runtimeMinutes)) +
   ) +
   theme_minimal()
 
-# create gen folder for analysis_data_clean
-dir.create("gen", recursive = TRUE, showWarnings = FALSE)
-
-  # Function to remove extreme outliers by group
+## Function to remove extreme outliers by group
 analysis_data_clean <- analysis_data %>%
   group_by(is_tvepisode) %>%
   filter({
@@ -44,19 +43,6 @@ ggplot(analysis_data_clean, aes(y = runtimeMinutes)) +
   ) +
   theme_minimal()
 
-# Step 7: Check the cleaned data
-dim(analysis_data_clean)
-
-analysis_data_clean %>%
-  group_by(is_tvepisode) %>%
-  group_split() %>%
-  lapply(function(df) {
-    summary(df$runtimeMinutes)
-  })
-
-
-summary(analysis_data_clean$averageRating)
-
 # Plot after removing outliers per group
 ggplot(analysis_data_clean, aes(x = factor(is_tvepisode, labels = c("Movie", "TV Episode")),
                                 y = runtimeMinutes,
@@ -70,12 +56,9 @@ ggplot(analysis_data_clean, aes(x = factor(is_tvepisode, labels = c("Movie", "TV
   ) +
   theme_minimal()
 
+# Remove extreme outliers for runtime TVepisodes
 
-table(analysis_data_clean$is_tvepisode)
-
-# Step 8: Remove extreme outliers for runtime TVepisodes
-
-  # Analysing the data through a plot
+## Analysing the data through a plot
 
 analysis_data_clean %>%
   filter(is_tvepisode == 1) %>%
@@ -89,10 +72,10 @@ analysis_data_clean %>%
   filter(runtimeMinutes < 15, is_tvepisode==1) %>%
   summarise(count = n())
 
-  # Removing TV episodes that are shorter than 15 minutes or longer than 65 minutes
+## Removing TV episodes that are shorter than 15 minutes or longer than 65 minutes
 
 analysis_data_clean <- analysis_data_clean %>%
   filter(is_tvepisode != 1 | (runtimeMinutes >= 15 & runtimeMinutes <= 65))
 
-# save in gen
+# Output final cleaned data
 write_tsv(analysis_data_clean, "gen/analysis_data_clean.tsv")
