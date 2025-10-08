@@ -87,12 +87,6 @@ cd imdb-runtime-analysis
 make
 ```
 
-3.  Clean temporary files created during the analysis:
-
-```         
-make clean
-```
-
 # Dependencies
 
 **R Packages:**
