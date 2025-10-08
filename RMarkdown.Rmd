@@ -228,5 +228,16 @@ analysis_data_clean <- analysis_data_clean %>%
 
 # Regression with interaction effect controlling for release year
 model_1 <- lm(averageRating ~ mruntimeMinutes * is_tvepisode + startYearCentered, data = analysis_data_clean)
+summary(model_1)
 ```
 
+# CONCLUSION
+The aim of this study was to explore how runtime influences audience ratings for movies compared to TV episodes, while controlling for release year. The variable “mruntimeMinutes” is mean-centered, and “startYearCentered” was centered around the year 1896, which serves as the baseline for interpretation. Using a multiple linear regression model, the analysis examined the effects of runtime, media type (movie vs. TV episode), and release year on audience ratings, including an interaction term between runtime and media type.
+
+The results reveal a significant positive effect of runtime on audience ratings for movies (β = 0.0076, p < .001), indicating that longer movies tend to receive higher ratings. The interaction between runtime and TV episode status is significant and negative (β = –0.0044, p < .001), meaning that the positive effect of runtime on ratings is weaker for TV episodes than for movies. Nevertheless, the combined effect of runtime for TV episodes remains positive (0.0076 – 0.0044 = 0.0032), showing that longer episodes are still rated slightly higher on average. Additionally, a small but significant negative effect of release year suggests that, on average, more recent releases tend to have slightly lower ratings.
+
+Overall, the findings indicate that runtime positively influences audience ratings across both media types, but the strength of this effect differs. Longer movies benefit more from extended runtimes than TV episodes, for which the improvement in ratings with increased runtime is more modest. This suggests that audiences may respond more favorably to longer runtimes in movies than in episodic content.
+
+# THEORETICAL IMPLICATIONS
+
+# PRACTICAL IMPLICATIONS
