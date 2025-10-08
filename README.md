@@ -126,26 +126,26 @@ Cleaned dataset, PDFs, and reports can be checked:
 
 This repository is part of a project for the course *Data Prep: Programming Skills* instructed by Roshini Sudhaharan. The project was created by:
 
--   **Martijn van Eijl**\
-    GitHub: [mvaneijl](https://github.com/mvaneijl)\
-    Email: [M.D.vanEijl\@tilburguniversity.edu](mailto:M.D.vanEijl@tilburguniversity.edu){.email}
+- **Martijn van Eijl**  
+  GitHub: [mvaneijl](https://github.com/mvaneijl)  
+  Email: M.D.vanEijl@tilburguniversity.edu
 
--   **Babette Janssen Lok**\
-    GitHub: [Babettejanssenlok](https://github.com/Babettejanssenlok)\
-    Email: [B.JanssenLok\@tilburguniversity.edu](mailto:B.JanssenLok@tilburguniversity.edu){.email}
+- **Babette Janssen Lok**  
+  GitHub: [Babettejanssenlok](https://github.com/Babettejanssenlok)  
+  Email: B.JanssenLok@tilburguniversity.edu
 
--   **Wendy Li**\
-    GitHub: [wendyliuvt](https://github.com/wendyliuvt)\
-    Email: [W.Y.Q.Li\@tilburguniversity.edu](mailto:W.Y.Q.Li@tilburguniversity.edu){.email}
+- **Wendy Li**  
+  GitHub: [wendyliuvt](https://github.com/wendyliuvt)  
+  Email: W.Y.Q.Li@tilburguniversity.edu
 
--   **Anouk van der Steen**\
-    GitHub: [anoukvandersteen](https://github.com/anoukvandersteen)\
-    Email: [A.vdrSteen\@tilburguniversity.edu](mailto:A.vdrSteen@tilburguniversity.edu){.email}
+- **Anouk van der Steen**  
+  GitHub: [anoukvandersteen](https://github.com/anoukvandersteen)  
+  Email: A.vdrSteen@tilburguniversity.edu
 
--   **Koen van de Wetering**\
-    GitHub: [koenvandewetering](https://github.com/koenvandewetering)\
-    Email: [K.vdWetering\@tilburguniversity.edu](mailto:K.vdWetering@tilburguniversity.edu){.email}
+- **Koen van de Wetering**  
+  GitHub: [koenvandewetering](https://github.com/koenvandewetering)  
+  Email: K.vdWetering@tilburguniversity.edu
 
--   **Femke de Wilde**\
-    GitHub: [Femke-de-Wilde](https://github.com/Femke-de-Wilde)\
-    Email: [F.D.deWilde\@tilburguniversity.edu](mailto:F.D.deWilde@tilburguniversity.edu){.email}
+- **Femke de Wilde**  
+  GitHub: [Femke-de-Wilde](https://github.com/Femke-de-Wilde)  
+  Email: F.D.deWilde@tilburguniversity.edu
