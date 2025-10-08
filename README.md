@@ -124,11 +124,28 @@ Cleaned dataset, PDFs, and reports can be checked:
 
 ## Contributors
 
-This repository is part of a project for the course Data Prep. Programming Skills instructed by Roshini Sudhaharan. The project was created by: 
+This repository is part of a project for the course *Data Prep: Programming Skills* instructed by Roshini Sudhaharan. The project was created by:
 
-- [Martijn van Eijl](https://github.com/mvaneijl) \| [M.D.vanEijl\@tilburguniversity.edu](mailto:M.D.vanEijl@tilburguniversity.edu){.email} 
-- [Babette Janssen Lok](https://github.com/Babettejanssenlok) \| [B.JanssenLok\@tilburguniversity.edu](mailto:B.JanssenLok@tilburguniversity.edu){.email} 
-- [Wendy Li](https://github.com/wendyliuvt) \| [W.Y.Q.Li\@tilburguniversity.edu](mailto:W.Y.Q.Li@tilburguniversity.edu){.email} 
-- [Anouk van der Steen](https://github.com/anoukvandersteen) \| [A.vdrSteen\@tilburguniversity.edu](mailto:A.vdrSteen@tilburguniversity.edu){.email} 
-- [Koen van de Wetering](https://github.com/x) \| [K.vdWetering\@tilburguniversity.edu](mailto:K.vdWetering@tilburguniversity.edu){.email} 
-- [Femke de Wilde](https://github.com/Femke-de-Wilde) \| [F.D.deWilde\@tilburguniversity.edu](mailto:F.D.deWilde@tilburguniversity.edu){.email}
+-   **Martijn van Eijl**\
+    GitHub: [mvaneijl](https://github.com/mvaneijl)\
+    Email: [M.D.vanEijl\@tilburguniversity.edu](mailto:M.D.vanEijl@tilburguniversity.edu){.email}
+
+-   **Babette Janssen Lok**\
+    GitHub: [Babettejanssenlok](https://github.com/Babettejanssenlok)\
+    Email: [B.JanssenLok\@tilburguniversity.edu](mailto:B.JanssenLok@tilburguniversity.edu){.email}
+
+-   **Wendy Li**\
+    GitHub: [wendyliuvt](https://github.com/wendyliuvt)\
+    Email: [W.Y.Q.Li\@tilburguniversity.edu](mailto:W.Y.Q.Li@tilburguniversity.edu){.email}
+
+-   **Anouk van der Steen**\
+    GitHub: [anoukvandersteen](https://github.com/anoukvandersteen)\
+    Email: [A.vdrSteen\@tilburguniversity.edu](mailto:A.vdrSteen@tilburguniversity.edu){.email}
+
+-   **Koen van de Wetering**\
+    GitHub: [koenvandewetering](https://github.com/koenvandewetering)\
+    Email: [K.vdWetering\@tilburguniversity.edu](mailto:K.vdWetering@tilburguniversity.edu){.email}
+
+-   **Femke de Wilde**\
+    GitHub: [Femke-de-Wilde](https://github.com/Femke-de-Wilde)\
+    Email: [F.D.deWilde\@tilburguniversity.edu](mailto:F.D.deWilde@tilburguniversity.edu){.email}
