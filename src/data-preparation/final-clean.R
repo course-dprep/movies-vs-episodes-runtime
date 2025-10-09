@@ -5,7 +5,9 @@ library(ggplot2)
 # Select relevant columns, remove missing values, de-duplicate > save in gen
 dir.create("tmp", recursive = TRUE, showWarnings = FALSE)
 
-analysis_data <- fread("tmp/merged_data.tsv")
+analysis_data <- fread("tmp/merged_data.tsv", fill=Inf)
+analysis_data$V13 <- NULL
+colnames(analysis_data)
 analysis_data[, c("originalTitle", "titleType", "isAdult", "endYear", "genres", "numVotes") := NULL]
 analysis_data <- analysis_data[!is.na(runtimeMinutes) & !is.na(averageRating)& !is.na(startYear)] %>% distinct(tconst, .keep_all = TRUE)
 
