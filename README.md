@@ -1,7 +1,11 @@
 ---
 title: "README"
 output: pdf_document
+<<<<<<< HEAD
 date: "2025-10-09"
+=======
+date: "2025-10-08"
+>>>>>>> 2c26a2a07e0bcbcaa1d3c4e7a16d07ffc9939d87
 ---
 
 # How does runtime influence audience ratings for movies compared to TV episodes, controlling for the release year?
@@ -61,7 +65,11 @@ main/
 └── team-project-team3.Rproj
 ```
 
+<<<<<<< HEAD
 # Workflow and Results
+=======
+# Workflow
+>>>>>>> 2c26a2a07e0bcbcaa1d3c4e7a16d07ffc9939d87
 
 The workflow ensures reproducibility and reusability:
 
@@ -72,6 +80,7 @@ The workflow ensures reproducibility and reusability:
 
 To ensure replicability, the workflow is automated using **RMarkdown** and controlled with a **Makefile**. This enables the entire analysis to be rerun end-to-end with limited manual work. Such a framework not only improves the reliability of this study, but also provides a reusable resource for students and researchers who wish to replicate the analysis with different datasets or apply it to similar research questions.
 
+<<<<<<< HEAD
 **Key findings:**
 
 -   Runtime positively influences audience ratings for both movies and TV episodes.
@@ -85,6 +94,8 @@ To ensure replicability, the workflow is automated using **RMarkdown** and contr
 -   For TV episodes, additional runtime slightly increases ratings, but with diminishing returns.
 -   Streaming platforms and producers can use these insights to optimize runtime for audience engagement.
 
+=======
+>>>>>>> 2c26a2a07e0bcbcaa1d3c4e7a16d07ffc9939d87
 # Running the Project
 
 1.  Clone the repository and set the correct working directory:
@@ -133,6 +144,7 @@ Cleaned dataset, PDFs, and reports can be checked:
 
 This repository is part of a project for the course *Data Prep: Programming Skills* instructed by Roshini Sudhaharan. The project was created by:
 
+<<<<<<< HEAD
 -   **Martijn van Eijl**\
     GitHub: [mvaneijl](https://github.com/mvaneijl)\
     Email: [M.D.vanEijl\@tilburguniversity.edu](mailto:M.D.vanEijl@tilburguniversity.edu){.email}
@@ -156,3 +168,28 @@ This repository is part of a project for the course *Data Prep: Programming Skil
 -   **Femke de Wilde**\
     GitHub: [Femke-de-Wilde](https://github.com/Femke-de-Wilde)\
     Email: [F.D.deWilde\@tilburguniversity.edu](mailto:F.D.deWilde@tilburguniversity.edu){.email}
+=======
+- **Martijn van Eijl**  
+  GitHub: [mvaneijl](https://github.com/mvaneijl)  
+  Email: M.D.vanEijl@tilburguniversity.edu
+
+- **Babette Janssen Lok**  
+  GitHub: [Babettejanssenlok](https://github.com/Babettejanssenlok)  
+  Email: B.JanssenLok@tilburguniversity.edu
+
+- **Wendy Li**  
+  GitHub: [wendyliuvt](https://github.com/wendyliuvt)  
+  Email: W.Y.Q.Li@tilburguniversity.edu
+
+- **Anouk van der Steen**  
+  GitHub: [anoukvandersteen](https://github.com/anoukvandersteen)  
+  Email: A.vdrSteen@tilburguniversity.edu
+
+- **Koen van de Wetering**  
+  GitHub: [koenvandewetering](https://github.com/koenvandewetering)  
+  Email: K.vdWetering@tilburguniversity.edu
+
+- **Femke de Wilde**  
+  GitHub: [Femke-de-Wilde](https://github.com/Femke-de-Wilde)  
+  Email: F.D.deWilde@tilburguniversity.edu
+>>>>>>> 2c26a2a07e0bcbcaa1d3c4e7a16d07ffc9939d87
