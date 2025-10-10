@@ -91,7 +91,7 @@ To ensure replicability, the workflow is automated using **RMarkdown** and contr
 
 ```         
 <https://github.com/%7Byour-username%7D/imdb-runtime-analysis.git> 
-cd imdb-runtime-analysis
+cd movies-vs-episodes-runtime
 ```
 
 2.  Run the full workflow with Make:
