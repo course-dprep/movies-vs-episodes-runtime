@@ -1,21 +1,17 @@
-all: gen/analysis_data_clean.tsv
+all: data-preparation analysis gen/output/data-exploration.html gen/output/deployment.html
 
-# 1: Download raw data
-raw/ratings_raw.tsv raw/title_basics_raw.tsv: src/data-preparation/download-data.R
-	Rscript src/data-preparation/download-data.R
+data-preparation:
+	make -C src/data-preparation
+	
+analysis:
+	make -C src/analysis 
+	
+gen/output/data-exploration.html: src/data-exploration/data-exploration.Rmd
+	Rscript src/data-exploration/render-data-exploration.R
 
-# 2: Filter
-tmp/filtered_movies_TVepisodes.tsv: src/data-preparation/data-cleaning.R raw/title_basics_raw.tsv
-	Rscript src/data-preparation/data-cleaning.R
+gen/output/deployment.html: src/deployment/deployment.Rmd
+	Rscript src/deployment/render-deployment.R
 
-# 3: Merge
-tmp/merged_data.tsv: src/data-preparation/merge-data.R tmp/filtered_movies_TVepisodes.tsv raw/ratings_raw.tsv
-	Rscript src/data-preparation/merge-data.R
-
-# 4: Final clean
-tmp/analysis_data.tsv gen/analysis_data_clean.tsv: src/data-preparation/final-clean.R tmp/merged_data.tsv
-	Rscript src/data-preparation/final-clean.R
-
-#5: Regression analysis
-analysis: src/data-preparation/analysis.R gen/analysis_data_clean.tsv
-	Rscript src/data-preparation/analysis.R
+clean:
+	R -e "unlink('gen/tmp/*', recursive = TRUE)"
+	R -e "unlink('gen/output/*', recursive = TRUE)"

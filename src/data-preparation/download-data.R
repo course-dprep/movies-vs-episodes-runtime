@@ -1,16 +1,20 @@
 library(tidyverse)
+library(here)
 
 # Ensure the "raw" folder exists
-dir.create("raw", recursive = TRUE, showWarnings = FALSE)
+dir.create(here("raw"), recursive = TRUE, showWarnings = FALSE)
 
-# Retrieve dataset for Movie and TV Episode Duration and Release Year
-title_url <- "https://datasets.imdbws.com/title.basics.tsv.gz"
-title_basics_raw <- read_tsv(title_url, na = c("\\N", ""))
+# Ensure the "gen" folder exists
+dir.create(here("gen/tmp"), recursive = TRUE, showWarnings = FALSE)
+dir.create(here("gen/output"), recursive = TRUE, showWarnings = FALSE)
 
-# Retrieve dataset for rating
-rating_url <- "https://datasets.imdbws.com/title.ratings.tsv.gz"
-ratings_raw <- read_tsv(rating_url, na = c("\\N", ""))
+# Download and Save function
+download_and_save <- function(url, file) write_tsv(read_tsv(url, na = c("\\N", "")), here(file))
+
+# Retrieve datasets
+datasets <- c(
+  "raw/title_basics_raw.tsv" = "https://datasets.imdbws.com/title.basics.tsv.gz",
+  "raw/ratings_raw.tsv"     = "https://datasets.imdbws.com/title.ratings.tsv.gz")
 
 # Save the downloaded datasets to folder "raw"
-write_tsv(title_basics_raw, "raw/title_basics_raw.tsv")
-write_tsv(ratings_raw, "raw/ratings_raw.tsv")
+walk2(datasets, names(datasets), download_and_save)

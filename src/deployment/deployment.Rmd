@@ -1,0 +1,63 @@
+---
+title: "How does runtime influence audience ratings for movies compared to TV episodes, controlling for the release year?"
+output:
+  html_document: default
+date: "2025-10-10"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# DEPENDENCIES 
+For the deployment, we used the following dependencies: 
+- R
+- Make
+- Installed packages in R: 
+```{r, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(data.table)
+library(here)
+```
+
+# RESEARCH QUESTION
+How does runtime influence audience ratings for movies compared to TV episodes, controlling for the release year?
+
+# RESEARCH METHOD
+By conducting a multiple linear regression, we will estimate the independent effect of runtime on ratings while controlling for release year and content type (movie/TV episode).
+
+# REGRESSION ANALYSIS 
+The following chunk of code will provide the regression analysis.
+```{r}
+analysis_data_clean <- read_tsv(here("gen/tmp/analysis_data_clean.tsv"), na = c("\\N", ""), show_col_types = FALSE)
+
+# Change runtimeMinutes to mean
+analysis_data_clean <- analysis_data_clean %>%
+  mutate(mruntimeMinutes = runtimeMinutes - mean(runtimeMinutes, na.rm = TRUE))
+
+# Change baseline to 1896 
+analysis_data_clean <- analysis_data_clean %>%
+  mutate(startYearCentered = startYear - 1896)
+
+# Regression with interaction effect controlling for release year
+model_1 <- lm(averageRating ~ mruntimeMinutes * is_tvepisode + startYearCentered, data = analysis_data_clean)
+summary(model_1)
+```
+
+# THEORETICAL IMPLICATIONS
+This study contributes to academic understanding by examining how runtime shapes audience ratings across different formats such as movies and TV episodes. The findings reveal that there is a positive relationship between runtime and audience ratings, with longer runtimes being more beneficial for movies than for TV episodes. 
+
+This aligns with existing theories of immersive engagement, which show that longer content enables more complex storytelling and viewers being fully engaged in the story, which result in a better overall viewer experience and evaluation. The weaker effect of duration on ratings for TV episodes compared to movies may be caused by different aspects, such as the story building up over many shorter parts. Further research should take into account how different media formats affect how people experience and immerse in the content that they are watching.  
+
+# PRACTICAL IMPLICATIONS
+This study offers valuable insights for the media industry when making decisions about runtime and content format. For movie producers the significant positive effect on movie ratings suggests that allowing more time for an in-depth story leads to higher ratings. For television and streaming platforms the effect of duration on audience ratings is noticeably weaker and therefore implies that it may provide a benefit for TV episodes to be longer but not as much as it does for movies. Producers of episodic content should therefore consider whether additional runtime adds meaning to the experience of the viewer or risk losing interest of the viewer. 
+
+One limitation may be that audience ratings may be biased, such as some viewers may be more likely to leave a review when they only have very strong positive or negative opinions. Further research could include the variable genre and if this has an effect on the result. 
+
+# CONCLUSION
+The aim of this study was to explore how runtime influences audience ratings for movies compared to TV episodes, while controlling for release year. The variable “mruntimeMinutes” is mean-centered, and “startYearCentered” was centered around the year 1896, which serves as the baseline for interpretation. Using a multiple linear regression model, the analysis examined the effects of runtime, media type (movie vs. TV episode), and release year on audience ratings, including an interaction term between runtime and media type.
+
+The results reveal a significant positive effect of runtime on audience ratings for movies (β = 0.0076, p < .001), indicating that longer movies tend to receive higher ratings. The interaction between runtime and TV episode status is significant and negative (β = –0.0044, p < .001), meaning that the positive effect of runtime on ratings is weaker for TV episodes than for movies. Nevertheless, the combined effect of runtime for TV episodes remains positive (0.0076 – 0.0044 = 0.0032), showing that longer episodes are still rated slightly higher on average. Additionally, a small but significant negative effect of release year suggests that, on average, more recent releases tend to have slightly lower ratings.
+
+Overall, the findings indicate that runtime positively influences audience ratings across both media types, but the strength of this effect differs. Longer movies benefit more from extended runtimes than TV episodes, for which the improvement in ratings with increased runtime is more modest. This suggests that audiences may respond more favorably to longer runtimes in movies than in episodic content.

@@ -1,9 +1,8 @@
 ---
-title: "Data_exploration"
+title: "DATA EXPLORATION"
 output:
-  pdf_document: default
   html_document: default
-date: "2025-10-03"
+date: "2025-10-10"
 ---
 
 # INTRODUCTION
@@ -23,10 +22,11 @@ For the data exploration step, we used the following dependencies:
 - R
 - Make
 - Installed packages in R: 
-```{r}
+```{r, setup, include=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(data.table)
+library(here)
 ```
 
 # LOADING THE DATASETS
@@ -35,28 +35,28 @@ Two separate datasets were acquired from IMDb (https://datasets.imdbws.com/):
 - The second dataset contains information on the contents' ratings, saved as "ratings_raw"
 
 The following chunk of code will first create the folder "raw" to store the raw datasets, and second, load the datasets into R: 
-```{r}
-# Ensure the "raw" folder exists
-dir.create("raw", recursive = TRUE, showWarnings = FALSE)
+```{r, eval=FALSE}
+# Download and Save function
+download_and_save <- function(url, file) write_tsv(read_tsv(url, na = c("\\N", "")), here(file))
 
-# Retrieve dataset for Movie and TV Episode Duration and Release Year
-title_url <- "https://datasets.imdbws.com/title.basics.tsv.gz"
-title_basics_raw <- read_tsv(title_url, na = c("\\N", ""))
-
-# Retrieve dataset for rating
-rating_url <- "https://datasets.imdbws.com/title.ratings.tsv.gz"
-ratings_raw <- read_tsv(rating_url, na = c("\\N", ""))
+# Retrieve datasets
+datasets <- c(
+  "raw/title_basics_raw.tsv" = "https://datasets.imdbws.com/title.basics.tsv.gz",
+  "raw/ratings_raw.tsv"     = "https://datasets.imdbws.com/title.ratings.tsv.gz")
 
 # Save the downloaded datasets to folder "raw"
-write_tsv(title_basics_raw, "raw/title_basics_raw.tsv")
-write_tsv(ratings_raw, "raw/ratings_raw.tsv")
+walk2(datasets, names(datasets), download_and_save)
 ```
 
 # DATA QUALITY OBSERVATIONS
 The following chunk of code provides a data quality check to identify missing values and outliers:
-```{r}
+```{r, warning = FALSE, message = FALSE}
 # Data quality check for title_basics_raw
   # Missing values
+title_basics_raw <- read_tsv(here("raw/title_basics_raw.tsv"), na = c("\\N", ""), show_col_types = FALSE)
+ratings_raw <- read_tsv(here("raw/ratings_raw.tsv"), na = c("\\N", ""), show_col_types = FALSE)
+title_basics_raw$runtimeMinutes <- as.numeric(title_basics_raw$runtimeMinutes)
+ratings_raw$averageRating <- as.numeric(ratings_raw$averageRating)
 colSums(is.na(title_basics_raw[c("tconst", "primaryTitle", "startYear", "runtimeMinutes")]))
 
   # Outliers 
