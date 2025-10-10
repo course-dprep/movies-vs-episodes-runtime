@@ -36,29 +36,23 @@ The results are communicated through an **RMarkdown-generated PDF report**. This
 ```         
 main/
 │
-├── Data_exploration/
-│ ├── Data_exploration.Rmd
-│ └── Data_exploration.pdf
-│
-├── reporting/
-│ └── report.Rmd
-│
 ├── src/
 │ ├── analysis/
+│ │ ├── makefile
 │ │ └── analysis.R
 │ ├── data-preparation/
+│ │ ├── makefile
 │ │ ├── download-data.R
 │ │ ├── data-cleaning.R
 │ │ ├── merge-data.R
 │ │ └── final-clean.R
 │ └── start_app.R
+├── gen/
+│ ├── tmp/
+│ └── output/
 │
 ├── makefile
-├── README.Rmd
-├── RMarkdown.Rmd
-├── RMarkdown.pdf
-├── Rplots.pdf
-└── team-project-team3.Rproj
+└── README.Rmd
 ```
 
 # Workflow
@@ -105,7 +99,7 @@ make
 **R Packages:**
 
 ```         
-r install.packages(c("tidyverse", "data.table", "ggplot2", "readr"))
+r install.packages(c("tidyverse", "data.table", "ggplot2", "readr","here"))
 ```
 
 ## Other dependencies

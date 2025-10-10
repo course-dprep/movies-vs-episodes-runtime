@@ -1,20 +1,16 @@
 library(tidyverse)
 library(data.table)
 library(ggplot2)
+library(here)
 
-# Select relevant columns, remove missing values, de-duplicate > save in gen
-dir.create("tmp", recursive = TRUE, showWarnings = FALSE)
-
-analysis_data <- fread("tmp/merged_data.tsv", fill=Inf)
+analysis_data <- fread(here("gen/tmp/merged_data.tsv"), fill=Inf)
 analysis_data$V13 <- NULL
 colnames(analysis_data)
 analysis_data[, c("originalTitle", "titleType", "isAdult", "endYear", "genres", "numVotes") := NULL]
 analysis_data <- analysis_data[!is.na(runtimeMinutes) & !is.na(averageRating)& !is.na(startYear)] %>% distinct(tconst, .keep_all = TRUE)
 
-write_tsv(analysis_data, "tmp/analysis_data.tsv")
-
-# Create gen folder for analysis_data_clean
-dir.create("gen", recursive = TRUE, showWarnings = FALSE)
+# Save all plots 
+pdf(here("gen/output", "plots.pdf"))
 
 # Remove extreme outliers for runtime
 ## Analyzing the date through a plot
@@ -80,4 +76,4 @@ analysis_data_clean <- analysis_data_clean %>%
   filter(is_tvepisode != 1 | (runtimeMinutes >= 15 & runtimeMinutes <= 65))
 
 # Output final cleaned data
-write_tsv(analysis_data_clean, "gen/analysis_data_clean.tsv")
+write_tsv(analysis_data_clean, here("gen/tmp/analysis_data_clean.tsv"))

@@ -1,5 +1,6 @@
 library(tidyverse)
-analysis_data_clean <- read_tsv("gen/analysis_data_clean.tsv", na = c("\\N", ""), show_col_types = FALSE)
+library(here)
+analysis_data_clean <- read_tsv(here("gen/tmp/analysis_data_clean.tsv"), na = c("\\N", ""), show_col_types = FALSE)
 
 # Change runtimeMinutes to mean
 analysis_data_clean <- analysis_data_clean %>%
