@@ -36,23 +36,26 @@ The results are communicated through an **RMarkdown-generated PDF report**. This
 ```         
 main/
 │
-├── src/
-│ ├── analysis/
-│ │ ├── makefile
-│ │ └── analysis.R
-│ ├── data-preparation/
-│ │ ├── makefile
-│ │ ├── download-data.R
-│ │ ├── data-cleaning.R
-│ │ ├── merge-data.R
-│ │ └── final-clean.R
-│ └── start_app.R
-├── gen/
-│ ├── tmp/
-│ └── output/
-│
-├── makefile
-└── README.Rmd
+src/
+├── analysis/
+│   ├── analysis.R
+│   └── makefile
+├── data-exploration/
+│   ├── data-exploration.Rmd
+│   └── render-data-exploration.R
+├── data-preparation/
+│   ├── data-cleaning.R
+│   ├── download-data.R
+│   ├── final-clean.R
+│   ├── makefile
+│   └── merge-data.R
+├── deployment/
+│   ├── deployment.Rmd
+│   └── render-deployment.R
+.gitignore
+README.md
+makefile
+team-project-team3.Rproj
 ```
 
 # Workflow
