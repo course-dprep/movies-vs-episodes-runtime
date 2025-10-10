@@ -110,14 +110,6 @@ r install.packages(c("tidyverse", "data.table", "ggplot2", "readr","here"))
 -   Make
 -   R \>= 4.3
 
-## Results
-
-Cleaned dataset, PDFs, and reports can be checked:
-
--   **Cleaned dataset:** `gen/analysis_data_clean.tsv`
--   **Data exploration PDF:** `Data_exploration/Data_exploration.pdf`
--   **Final report PDF:** `RMarkdown.pdf`
-
 ## Reference List
 
 -   Austin, B. A. (1980). *Rating the movies.* Journal of Popular Film and Television, 7(4), 384–399. <https://doi.org/10.1080/01956051.1980.9943897>
